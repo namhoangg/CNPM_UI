@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Footer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <style>
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Adjusted the middle column to be larger */
+      gap: 50px; /* This adds space between the columns */
+      margin: auto;
+      width: 1180px; /* Adjusted to match the image width */
+      height: 450px; /* Changed to auto to accommodate content of variable height */
+      padding-top: 30px;
+      align-items: start; /* Adjusted to align items to the start of the container */
+      overflow: hidden;
+    }
+    .cart-items, .cart-summary {
+        grid-column: 3 / 3;
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px;
+    }
+    .cart-summary {
+        width: 300px;
+    }
+    .cart-summary h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .cart-summary .total-line {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+    .checkout-btn {
+        width: 100%;
+        height: 50px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+    .checkout-btn:focus {
+        outline: none;
+    }
+    .checkout-btn:active {
+        background-color: #367a36;
+    }
+    .payment-icons img {
+        height: 20px;
+        margin-right: 5px;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .cart-container {
+        grid-column: 1 / 3;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        background: #f9f9f9;
+    }
+    .cart-header {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .cart-item {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .cart-item:last-child {
+        border-bottom: none;
+    }
+    .cart-image {
+        width: 80px;
+        margin-right: 15px;
+    }
+    .cart-details {
+        flex-grow: 1;
+    }
+    .cart-price {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .cart-quantity {
+        margin-left: 15px;
+    }
+    .cart-actions {
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+    .cart-actions button {
+        padding: 5px 10px;
+        margin: 0 5px;
+        background-color: #5c85d6;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-back {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-remove {
+      background-color: transparent;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    /* Icons can be added via CSS content property for simplicity */
+    .btn-back::before {
+      content: '\2190';
+      margin-right: 5px;
+    }
+
+    .support-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: auto;
+      padding-bottom: 30px;
+      width: 550px;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon {
+      background-color: white;
+      padding: 10px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .text {
+      color: #333;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Example of icons using Unicode characters */
+    .icon-secure::before { content: "\1F510"; } /* Lock */
+    .icon-support::before { content: "\1F4DE"; } /* Telephone */
+    .icon-delivery::before { content: "\1F69A"; } /* Delivery Truck */
+  </style>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-wrap">
+          <div class="web-brief-desc-title">
+            <div class="web-brief-logo">
+              <img
+                class="logo-1"
+                src="../assets//images//brief-icon-1.svg"
+                alt="brief-icon-1"
+              />
+              <img
+                class="logo-2"
+                src="../assets//images//brief-icon-2.svg"
+                alt="brief-icon-2"
+              />
+              <div class="logo-3-wrap">
+                <img
+                  class="logo-3"
+                  src="../assets//images//brief-icon-3.svg"
+                  alt="brief-icon-3"
+                />
+              </div>
+            </div>
+
+            <span style="color: #8cb7f5"> E-grocery</span>
+            </div>
+        <div class="header-search">
+            <form action="#">
+              <div class="search">
+                <input name="keyword" type="text" placeholder="Search" />
+              </div>
+              <div class="categories">
+                <select name="category">
+                  <option value="all">All category</option>
+                  <option value="vegetables">Vegetables</option>
+                  <option value="fruits">Fruits</option>
+                  <option value="meat">Meat</option>
+                  <option value="seafood">Seafood</option>
+                  <option value="dairy">Dairy</option>
+                </select>
+              </div>
+              <div class="search-submit">
+                <button type="submit">Search</button>
+              </div>
+            </form>
+          </div>
+          <div class="header-action">
+            <div class="action-item">
+              <img src="../assets//images//profile.svg" alt="profile" />
+              <span>Profile</span>
+            </div>
+            <div class="action-item">
+              <img src="../assets//images//message.svg" alt="message" />
+              <span>Message</span>
+            </div>
+            <div class="action-item">
+              <img src="../assets//images//order.svg" alt="Orders" />
+              <span>Orders</span>
+            </div>
+            <div class="action-item">
+              <img src="../assets//images//cart.svg" alt="Cart" />
+              <span>My cart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="cart-layout">
+  
+        <!-- Insert the cart-items container here -->
+        <div class="cart-container">
+            <div class="cart-header">
+              My cart
+            </div>
+          
+            <!-- Cart Item 1 -->
+            <div class="cart-item">
+              <img class="cart-image" src="..//assets/images/xiaomi-image.jpg" alt="T-shirt">
+              <div class="cart-details">
+                <h5>T-shirts with multiple colors, for men and lady</h5>
+                Size: medium, Color: blue, Material: Plastic<br>
+                Seller: Artel Market
+              </div>
+              <div class="cart-price">$78.99</div>
+              <div class="cart-quantity">
+                Qty: <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+    
+            <!-- Cart Item 2 -->
+            <div class="cart-item">
+                <img class="cart-image" src="..//assets/images/shirt-image.jpg" alt="T-shirt">
+                <div class="cart-details">
+                  <h5>T-shirts with multiple colors, for men and lady</h5>
+                  Size: medium, Color: blue, Material: Plastic<br>
+                  Seller: Artel Market
+                </div>
+                <div class="cart-price">$78.99</div>
+                <div class="cart-quantity">
+                  Qty: <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <!-- Add more options as needed -->
+                  </select>
+                </div>
+              </div>
+            
+            <!-- More cart items... -->
+          
+            <div class="button-container">
+              <button class="btn btn-back">Back to shop</button>
+              <button class="btn btn-remove">Remove all</button>
+            </div>
+        </div>
+      
+        <div class="cart-summary">
+          <div class="coupon-section">
+            <label for="coupon">Have a coupon?</label>
+            <input type="text" id="coupon" placeholder="Add coupon">
+            <button>Apply</button>
+          </div>
+          <div class="total-line">
+            <span>Subtotal:</span>
+            <span>$1403.97</span>
+          </div>
+          <div class="total-line">
+            <span>Discount:</span>
+            <span>-$60.00</span>
+          </div>
+          <div class="total-line">
+            <span>Tax:</span>
+            <span>+$14.00</span>
+          </div>
+          <div class="total-line" style="font-weight: bold; font-size: larger;">
+            <span>Total:</span>
+            <span>$1357.97</span>
+          </div>
+          <button class="checkout-btn">
+            Checkout
+          </button>
+          <br>
+          <div class="payment-icons">
+            <!-- Add your payment method images here -->
+            <img src="..//assets//images/amex.png" alt="American Express">
+            <img src="..//assets//images/master.png" alt="MasterCard">
+            <img src="..//assets//images/visa.png" alt="Visa">
+            <img src="..//assets//images/apple.jpg" alt="Apple Pay">
+          </div>
+        </div>
+      </div>
+
+      <div class="support-container">
+        <div class="item">
+          <div class="icon icon-secure"></div>
+          <div class="text">Secure payment</div>
+        </div>
+        <div class="item">
+          <div class="icon icon-support"></div>
+          <div class="text">Customer support</div>
+        </div>
+        <div class="item">
+          <div class="icon icon-delivery"></div>
+          <div class="text">Free delivery</div>
+        </div>
+      </div>
+
+      <div class="related-products-container">
+        <h3>Saved for later</h3>
+        <div class="related-products">
+          <!-- Repeat this block for each product -->
+          <div class="product-card">
+            <img src="..//assets/images/xiaomi-image.jpg" alt="Product Name">
+            <div class="product-info">
+              <span class="product-name">Xiaomi Redmi 8 Original</span>
+              <span class="product-price">$32.00 - $40.00</span>
+            </div>
+          </div>
+          <!-- ... other product cards ... -->
+          <div class="product-card">
+            <img src="..//assets/images/xiaomi-image.jpg" alt="Product Name">
+            <div class="product-info">
+              <span class="product-name">Xiaomi Redmi 8 Original</span>
+              <span class="product-price">$32.00 - $40.00</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="..//assets/images/xiaomi-image.jpg" alt="Product Name">
+            <div class="product-info">
+              <span class="product-name">Xiaomi Redmi 8 Original</span>
+              <span class="product-price">$32.00 - $40.00</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="..//assets/images/xiaomi-image.jpg" alt="Product Name">
+            <div class="product-info">
+              <span class="product-name">Xiaomi Redmi 8 Original</span>
+              <span class="product-price">$32.00 - $40.00</span>
+            </div>
+          </div>
+          <div class="product-card">
+            <img src="..//assets/images/xiaomi-image.jpg" alt="Product Name">
+            <div class="product-info">
+              <span class="product-name">Xiaomi Redmi 8 Original</span>
+              <span class="product-price">$32.00 - $40.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="web-brief">
+        <div class="container">
+          <div class="web-brief-wrap">
+            <div class="web-brief-desc">
+              <div class="web-brief-desc-title">
+                <div class="web-brief-logo">
+                  <img
+                    class="logo-1"
+                    src="../assets//images//brief-icon-1.svg"
+                    alt="brief-icon-1"
+                  />
+                  <img
+                    class="logo-2"
+                    src="../assets//images//brief-icon-2.svg"
+                    alt="brief-icon-2"
+                  />
+                  <div class="logo-3-wrap">
+                    <img
+                      class="logo-3"
+                      src="../assets//images//brief-icon-3.svg"
+                      alt="brief-icon-3"
+                    />
+                  </div>
+                </div>
+
+                <span style="color: #8cb7f5"> E-grocery</span>
+              </div>
+              <div class="web-brief-desc-desc">
+                <span
+                  >Ecommerce website sells everything <br />you need (except
+                  girlfriend).</span
+                >
+              </div>
+              <div class="social-media">
+                <span>
+                  <img src="../assets//images//facebook.svg" alt="facebook" />
+                </span>
+                <span>
+                  <img src="../assets//images//twitter.svg" alt="twitter" />
+                </span>
+                <span>
+                  <img src="../assets//images/linkedin.svg" alt="linkedin" />
+                </span>
+                <span>
+                  <img
+                    src="../assets//images//instagram.svg"
+                    alt="instagram"
+                  />
+                </span>
+                <span>
+                  <img src="../assets//images//youtube.svg" alt="youtube" />
+                </span>
+              </div>
+            </div>
+            <div class="web-brief-item">
+              <strong class="web-brief-item-title">About</strong>
+              <span class="web-brief-item-content">About us</span>
+              <span class="web-brief-item-content">Find store</span>
+              <span class="web-brief-item-content">Categories</span>
+              <span class="web-brief-item-content">Blogs</span>
+            </div>
+            <div class="web-brief-item">
+              <strong class="web-brief-item-title">Partnership</strong>
+              <span class="web-brief-item-content">About us</span>
+              <span class="web-brief-item-content">Find store</span>
+              <span class="web-brief-item-content">Categories</span>
+              <span class="web-brief-item-content">Blogs</span>
+            </div>
+            <div class="web-brief-item">
+              <strong class="web-brief-item-title">Information</strong>
+              <span class="web-brief-item-content">Help center</span>
+              <span class="web-brief-item-content">Money refund</span>
+              <span class="web-brief-item-content">Contact us</span>
+            </div>
+            <div class="web-brief-item">
+              <strong class="web-brief-item-title">For users</strong>
+              <span class="web-brief-item-content">Login</span>
+              <span class="web-brief-item-content">Register</span>
+              <span class="web-brief-item-content">My orders</span>
+            </div>
+            <div class="web-brief-get-app">
+              <strong class="web-brief-item-title">Get apps</strong>
+              <img
+                class="app"
+                src="../assets//images/app-store.svg"
+                alt="app-store"
+              />
+              <img
+                class="app"
+                src="../assets//images/google-play.svg"
+                alt="google-play"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-wrap">
+        <div class="footer-left">
+          <span>©️ 2023 E-grocery</span>
+        </div>
+        <div class="footer-right">
+          <img src="../assets/images/us-flag.svg" alt="us-flag" />
+          <span>English</span>
+          <img src="../assets//images//icon-up.svg" alt="icon-up" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--bootstrap js-->
+
+    <script>
+        function changeImage(src) {
+          document.getElementById('mainImage').getElementsByTagName('img')[0].src = src;
+        }
+
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+
+        document.querySelectorAll('.tab').forEach(function(tab) {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                var activeTabs = document.querySelectorAll('.active');
+                activeTabs.forEach(function(activeTab) {
+                activeTab.classList.remove('active');
+                });
+
+                tab.classList.add('active');
+                var href = tab.querySelector('a').getAttribute('href');
+                document.querySelector(href).classList.add('active');
+            });
+        });
+
+    </script>
+</body>
+</html>
+    
